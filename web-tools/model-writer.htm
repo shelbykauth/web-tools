@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>Symfony Model Writer</title>
+  <link rel="icon" href="http://marie.kauths.com/images/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <meta charset="UTF-8">
+  <script>
+        $(document).ready(function(){
+			$("#form-model-writer").on('submit', function(e){
+				e.preventDefault();
+				$.ajax({
+					url: 'model-writer-ajax.php', 
+					method: 'post',
+					data: $("#form-model-writer").serialize(),
+					success: function(result){
+						$("#result").html(result);
+					}
+				});
+			});
+			
+			$("#btn-add-model-property").on('click', function(){
+				var ele = $(".args").first().clone();
+				$(".args-container").append(ele);
+			});
+		});
+		
+		function remove_model_property(ele){
+			if ($(".args").length > 1){
+				ele.remove();
+			} else {
+				modal_errors('You must have at least one model property!');
+			}
+		}
+		
+		function modal_errors(html){
+		    var modal_width = 340;
+		    if($(window).width() > 650){
+		        modal_width = 600;
+		    }
+		    $("#modal_errors").html(html).dialog({
+		        modal: true,
+				title: 'Errors',
+		        width: modal_width,
+		        buttons: {
+			        Ok: function(){
+				        $(this).dialog("close");
+			        }
+		        }
+		    });
+		}
+  </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Symfony Model Writer</h2>
+        <p>
+        	If you are using the 
+        	<a href="https://github.com/symfony/symfony-standard/">symfony framework</a>,
+	        you may find this tool useful.
+        </p>
+        <p>
+	        Of course we have been using a symfony like framework, so hey, maybe symfony 
+	        does all the work for you including the spacing and this tool is not necessary.
+        </p>
+        <form id="form-model-writer">
+            <div class="form-group">
+                <label for="company">Company Name:</label>
+                <input type="company" class="form-control" id="company" name="company" placeholder="Enter company">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Name Space:</label>
+                <input type="namespace" class="form-control" id="namespace" name="namespace" placeholder="Enter namespace">
+            </div>
+            <div class="form-group">
+                <label for="model">Model Name:</label>
+                <input type="model" class="form-control" id="model" name="model" placeholder="Enter model name">
+            </div>
+			<div class="args-container">
+                <div class="form-group args">
+                    <label for="pwd">Property Name/Type:</label>
+                    <input type="arg_name" class="form-control" id="arg_name[]" name="arg_name[]" placeholder="Enter property name">
+    				<br>
+                    <input type="arg_type" class="form-control" id="arg_type[]" name="arg_type[]" placeholder="Enter property type">
+					<br>
+					<button type="button" class="btn btn-remove-model-property" onClick="remove_model_property($(this).parent());">Remove Model Property</button>
+                </div>
+			</div>
+			<p>
+				<button type="button" class="btn" id="btn-add-model-property">Add Model Property</button>
+			</p>
+			<button type="submit" class="btn btn-default">Submit</button>
+        </form>
+	</div>
+	<div id="result"></div>
+	<div id="modal_errors"></div>
+</body> 
+</html>
