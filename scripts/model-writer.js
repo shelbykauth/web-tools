@@ -16,7 +16,7 @@ $(document).ready(function(){
         $(".args-container").append(ele);
     });
 });
-
+var ModelWriter = {};
 function remove_model_property(ele){
     if ($(".args").length > 1){
         ele.remove();
