@@ -27,16 +27,17 @@ ModelWriter.formGetter = function()
     returnObject.namespace = form.find("#namespace").val();
     returnObject.model = form.find("#model").val();
     returnObject.args = [];
+    
     var args = $(".form-group.args");
     var names = $("[name='arg_name[]'");
     var types = $("[name='arg_type[]'");
-    console.log(args);
     for (var i=0; i < args.length; i++) {
         var newArg = {};
         newArg.name = names[i].value;
         newArg.type = types[i].value;
         returnObject.args.push(newArg);
     }
+    
     return returnObject;
 }
 
