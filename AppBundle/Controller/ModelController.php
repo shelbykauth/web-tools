@@ -36,7 +36,7 @@ class ModelController
 		
         foreach ($args as $arg => $type) {
     	    $str .= '<br>';
-    	    $str .= '&nbsp;&nbsp;&nbsp;&nbsp;/** @param ' . $type . ' $' . $arg . '*/<br>';
+    	    $str .= '&nbsp;&nbsp;&nbsp;&nbsp;/** @param ' . $type . ' $' . $arg . ' */<br>';
     	    $str .= '&nbsp;&nbsp;&nbsp;&nbsp;private $' . $arg . ';<br>';
         }
 		
@@ -59,7 +59,7 @@ class ModelController
             $str .= '&nbsp;&nbsp;&nbsp;&nbsp; */<br>';
             $str .= '&nbsp;&nbsp;&nbsp;&nbsp;public function set' . ucfirst($arg) . '($' . $arg . ')<br>';
             $str .= '&nbsp;&nbsp;&nbsp;&nbsp;{<br>';
-            $str .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp$this->' . $arg . ' = $' . $arg . '<br>';
+            $str .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp$this->' . $arg . ' = $' . $arg . ';<br>';
             $str .= '&nbsp;&nbsp;&nbsp;&nbsp;}<br>';	
         }
 		
