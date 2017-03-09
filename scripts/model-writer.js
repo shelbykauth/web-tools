@@ -49,7 +49,7 @@ $(document).ready(function(){
 });
 var ModelWriter = {};
 
-ModelWriter.formGetter = function()
+ModelWriter.readForm = function()
 {
     var form = $("form#form-model-writer");
     var returnObject = {};
@@ -80,11 +80,13 @@ function remove_model_property(ele){
     }
 }
 
-ModelWriter.ucfirst = function(string) {
+ModelWriter.ucfirst = function(string)
+{
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-ModelWriter.write = function(isPlainText) {
+ModelWriter.write = function(isPlainText)
+{
     var formData = ModelWriter.readForm();
     var language = formData.language;
     var company = formData.company;
@@ -141,7 +143,7 @@ ModelWriter.write = function(isPlainText) {
                         + " set" 
                         + ModelWriter.ucfirst(arg) + "($" + arg + ")" + nl;
                 output += tab + "{" + nl
-                        + tab + tab + "$this->" + arg + " = $" + arg + nl
+                        + tab + tab + "$this->" + arg + " = $" + arg + ";" + nl
                         + tab + "}" + nl;
             }
             output += "}" + nl 
@@ -168,7 +170,8 @@ ModelWriter.defaultPropertyTypes = ["bool"
                                    
 ModelWriter.customPropertyTypes = [];
 
-ModelWriter.addPropertyType = function() {
+ModelWriter.addPropertyType = function()
+{
     var cTypes = ModelWriter.customPropertyTypes;
     var dTypes = ModelWriter.defaultPropertyTypes;
     var name = $("input#add-type").val();
@@ -181,7 +184,8 @@ ModelWriter.addPropertyType = function() {
     $("input#add-type").val("");
 }
 
-ModelWriter.removePropertyType = function() {
+ModelWriter.removePropertyType = function()
+{
     var cTypes = ModelWriter.customPropertyTypes;
     var dTypes = ModelWriter.defaultPropertyTypes;
     var name = $("input#add-type").val();
@@ -197,7 +201,8 @@ ModelWriter.removePropertyType = function() {
     ModelWriter.populatePropertyTypes();
 }
 
-ModelWriter.populatePropertyTypes = function() {
+ModelWriter.populatePropertyTypes = function()
+{
     var selects = $("select[name='types'], select[name='arg_type[]']");
     var mainOption1 = "<option value='' disabled selected>Property Types</option>";
     var otherOption1 = "<option value='' disabled selected>Property Type</option>";
@@ -218,7 +223,8 @@ ModelWriter.populatePropertyTypes = function() {
     $("select[name='arg_type[]']").append(removeProperty);
 }
 
-function modal_errors(html){
+function modal_errors(html)
+{
     var modal_width = 340;
     if($(window).width() > 650){
         modal_width = 600;
