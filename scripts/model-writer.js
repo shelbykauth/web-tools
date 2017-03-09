@@ -19,7 +19,15 @@ $(document).ready(function(){
         switch ($(this).val()) {
             case "php":
                 ModelWriter.defaultPropertyTypes = 
-                    ["int","bool","number","string","array","object"];
+                    ["bool"
+                    ,"boolean"
+                    ,"int"
+                    ,"float"
+                    ,"double"
+                    ,"long"
+                    ,"string"
+                    ,"array"
+                    ,"object"];
             break;
         }
     }).trigger("change");
@@ -45,9 +53,12 @@ function remove_model_property(ele){
     }
 }
 
-ModelWriter.defaultPropertyTypes = ["int"
-                                   ,"bool"
-                                   ,"number"
+ModelWriter.defaultPropertyTypes = ["bool"
+                                   ,"boolean"
+                                   ,"int"
+                                   ,"float"
+                                   ,"double"
+                                   ,"long"
                                    ,"string"
                                    ,"array"
                                    ,"object"];
