@@ -35,7 +35,7 @@ echo ' */<br>';
 echo 'class ' . $class;
 foreach ($args as $arg => $type) {
 	echo '<br>';
-	echo '&nbsp;&nbsp;&nbsp;&nbsp;/** @param ' . $type . ' $' . $arg . '*/<br>';
+	echo '&nbsp;&nbsp;&nbsp;&nbsp;/** @param ' . $type . ' $' . $arg . ' */<br>';
 	echo '&nbsp;&nbsp;&nbsp;&nbsp;private $' . $arg . ';<br>';
 	echo '<br>';
 }
@@ -58,6 +58,6 @@ foreach ($args as $arg => $type) {
     echo '&nbsp;&nbsp;&nbsp;&nbsp; */<br>';
     echo '&nbsp;&nbsp;&nbsp;&nbsp;public function set' . ucfirst($arg) . '($' . $arg . ')<br>';
     echo '&nbsp;&nbsp;&nbsp;&nbsp;{<br>';
-    echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp$this->' . $arg . ' = $' . $arg . '<br>';
+    echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp$this->' . $arg . ' = $' . $arg . ';<br>';
     echo '&nbsp;&nbsp;&nbsp;&nbsp;}<br>';	
 }
