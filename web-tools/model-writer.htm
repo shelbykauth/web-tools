@@ -32,6 +32,17 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="types">Add Custom Property Types:</label>
+                <select id="types" name="types" class="form-control">
+                    <option value="" disabled>--------</option>
+                </select>
+                <br>
+                <input id="add-type" name="add-type" placeholder="MyCustomClass" class="form-control">
+                <br>
+                <button onClick="ModelWriter.removePropertyType()" class="btn">Remove Custom Property Type</button>
+                <button onClick="ModelWriter.addPropertyType()" class="btn">Add Custom Property Type</button>
+            </div>
+            <div class="form-group">
                 <label for="company">Company Name:</label>
                 <input type="company" class="form-control" id="company" name="company" placeholder="Enter company">
             </div>
@@ -48,9 +59,7 @@
                     <label for="pwd">Property Name/Type:</label>
                     <input type="arg_name" class="form-control" id="arg_name[]" name="arg_name[]" placeholder="Enter property name">
     				<br>
-                    <input type="arg_type" class="form-control" id="arg_type[]" name="arg_type[]" placeholder="Enter property type">
-					<br>
-					<button type="button" class="btn btn-remove-model-property" onClick="remove_model_property($(this).parent());">Remove Model Property</button>
+                    <select class="form-control" id="arg_type[]" name="arg_type[]"></select>
                 </div>
 			</div>
 			<p>
