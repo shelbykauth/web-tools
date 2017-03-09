@@ -75,6 +75,7 @@ ModelWriter.addPropertyType = function() {
     }
     cTypes.push(name);
     ModelWriter.populatePropertyTypes();
+    $("input#add-type").val("");
 }
 
 ModelWriter.removePropertyType = function() {
