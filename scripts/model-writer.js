@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $("#form-model-writer").on('submit', function(e){
         e.preventDefault();
+        /*
         $.ajax({
             url: 'model-writer-ajax.php', 
             method: 'post',
@@ -9,6 +10,8 @@ $(document).ready(function(){
                 $("#result").html(result);
             }
         });
+        */
+        $("#result").html(ModelWriter.write());
     });
     
     $("#btn-add-model-property").on('click', function(){
