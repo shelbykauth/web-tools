@@ -105,45 +105,47 @@ ModelWriter.write = function(isPlainText)
     switch (language) {
         case "php":
             output = "/*" + nl
-                   + " * (c) " + company + nl
-                   + " *" + nl
-                   + " * For the full copyright and license information, please view the LICENSE" + nl
-                   + " * file that was distributed with this source code." + nl
-                   + " */<br>" + nl
-                   + "namespace " + namespace + nl
+                   + sp + "* (c) " + company + nl
+                   + sp + "*" + nl
+                   + sp + "* For the full copyright and license information, please view the LICENSE" + nl
+                   + sp + "* file that was distributed with this source code." + nl
+                   + sp + "*/<br>" + nl
+                   + sp + "namespace " + namespace + ";" + nl
                    + nl
                    + "/**" + nl
-                   + " * @author Marie Kauth <marie.kauth@gmail.com>" + nl
-                   + " */" + nl
+                   + sp + "* @author Marie Kauth <marie.kauth@gmail.com>" + nl
+                   + sp + "*/" + nl
                    + "class " + model + nl
-		           + "{" + nl
-            for (arg in args) {
-                var type = args[arg].type;
+		           + "{";
+            for (var arg of args) {
+                var name = arg.name;
+                var type = arg.type;
                 output += nl
-                        + tab + "/** @param " + type + " $" + arg + "*/" + nl
-                        + tab + "private $" + arg + ";" + nl
+                        + tab + "/** @param " + type + " $" + name + " */" + nl
+                        + tab + "private $" + name + ";" + nl
             }
-            for (arg in args) {
-                var type = args[arg].type;
+            for (var arg of args) {
+                var name = arg.name;
+                var type = arg.type;
                 output += nl
                         + tab + "/**" + nl
-                        + tab + " * @return " + type + nl
-                        + tab + " */" + nl;
+                        + tab + sp + "* @return " + type + nl
+                        + tab + sp + "*/" + nl;
                 output += tab + "public function"
                         + ((type === 'bool' || type === 'boolean') ? " is" : " get")
-                        + ModelWriter.ucfirst(arg) + "()" + nl;
+                        + ModelWriter.ucfirst(name) + "()" + nl;
                 output += tab + "{" + nl
-                        + tab + tab + "return $this->" + arg + ";" + nl
+                        + tab + tab + "return $this->" + name + ";" + nl
                         + tab + "}" + nl
                         + nl
                         + tab + "/**" + nl
-                        + tab + " * @param " + type + " $" + arg + nl
-                        + tab + " */" + nl;
+                        + tab + sp + "* @param " + type + " $" + name + nl
+                        + tab + sp + "*/" + nl;
                 output += tab + "public function"
                         + " set" 
-                        + ModelWriter.ucfirst(arg) + "($" + arg + ")" + nl;
+                        + ModelWriter.ucfirst(name) + "($" + name + ")" + nl;
                 output += tab + "{" + nl
-                        + tab + tab + "$this->" + arg + " = $" + arg + ";" + nl
+                        + tab + tab + "$this->" + name + " = $" + name + ";" + nl
                         + tab + "}" + nl;
             }
             output += "}" + nl 
