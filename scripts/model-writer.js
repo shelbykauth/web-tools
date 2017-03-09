@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $("#form-model-writer").on('submit', function(e){
         e.preventDefault();
+        /*
         $.ajax({
             url: 'model-writer-ajax.php', 
             method: 'post',
@@ -9,6 +10,8 @@ $(document).ready(function(){
                 $("#result").html(result);
             }
         });
+        */
+        $("#result").html(ModelWriter.write());
     });
     
     $("#btn-add-model-property").on('click', function(){
@@ -46,7 +49,7 @@ $(document).ready(function(){
 });
 var ModelWriter = {};
 
-ModelWriter.formGetter = function()
+ModelWriter.readForm = function()
 {
     var form = $("form#form-model-writer");
     var returnObject = {};
@@ -77,6 +80,86 @@ function remove_model_property(ele){
     }
 }
 
+ModelWriter.ucfirst = function(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+ModelWriter.write = function(isPlainText)
+{
+    var formData = ModelWriter.readForm();
+    var language = formData.language;
+    var company = formData.company;
+    var model = formData.model;
+    var namespace = formData.namespace;
+    var args = formData.args;
+    var output = "";
+    var nl = "<br>";
+    var sp = "&nbsp;";
+    var tab = sp + sp + sp + sp;
+    if (isPlainText) {
+        nl = "\n\r";
+        sp = " ";
+        tab = "    ";
+    }
+    switch (language) {
+        case "php":
+            output = "/*" + nl
+                   + sp + "* (c) " + company + nl
+                   + sp + "*" + nl
+                   + sp + "* For the full copyright and license information, please view the LICENSE" + nl
+                   + sp + "* file that was distributed with this source code." + nl
+                   + sp + "*/<br>" + nl
+                   + sp + "namespace " + namespace + ";" + nl
+                   + nl
+                   + "/**" + nl
+                   + sp + "* @author Marie Kauth <marie.kauth@gmail.com>" + nl
+                   + sp + "*/" + nl
+                   + "class " + model + nl
+		           + "{";
+            for (var arg of args) {
+                var name = arg.name;
+                var type = arg.type;
+                output += nl
+                        + tab + "/** @param " + type + " $" + name + " */" + nl
+                        + tab + "private $" + name + ";" + nl
+            }
+            for (var arg of args) {
+                var name = arg.name;
+                var type = arg.type;
+                output += nl
+                        + tab + "/**" + nl
+                        + tab + sp + "* @return " + type + nl
+                        + tab + sp + "*/" + nl;
+                output += tab + "public function"
+                        + ((type === 'bool' || type === 'boolean') ? " is" : " get")
+                        + ModelWriter.ucfirst(name) + "()" + nl;
+                output += tab + "{" + nl
+                        + tab + tab + "return $this->" + name + ";" + nl
+                        + tab + "}" + nl
+                        + nl
+                        + tab + "/**" + nl
+                        + tab + sp + "* @param " + type + " $" + name + nl
+                        + tab + sp + "*/" + nl;
+                output += tab + "public function"
+                        + " set" 
+                        + ModelWriter.ucfirst(name) + "($" + name + ")" + nl;
+                output += tab + "{" + nl
+                        + tab + tab + "$this->" + name + " = $" + name + ";" + nl
+                        + tab + "}" + nl;
+            }
+            output += "}" + nl 
+                    + nl;
+        break;
+        case "js":
+        
+        break;
+        default:
+            output = "Language Not Available!";
+    }
+    return output;
+}
+
 ModelWriter.defaultPropertyTypes = ["bool"
                                    ,"boolean"
                                    ,"int"
@@ -89,7 +172,8 @@ ModelWriter.defaultPropertyTypes = ["bool"
                                    
 ModelWriter.customPropertyTypes = [];
 
-ModelWriter.addPropertyType = function() {
+ModelWriter.addPropertyType = function()
+{
     var cTypes = ModelWriter.customPropertyTypes;
     var dTypes = ModelWriter.defaultPropertyTypes;
     var name = $("input#add-type").val();
@@ -102,7 +186,8 @@ ModelWriter.addPropertyType = function() {
     $("input#add-type").val("");
 }
 
-ModelWriter.removePropertyType = function() {
+ModelWriter.removePropertyType = function()
+{
     var cTypes = ModelWriter.customPropertyTypes;
     var dTypes = ModelWriter.defaultPropertyTypes;
     var name = $("input#add-type").val();
@@ -118,7 +203,8 @@ ModelWriter.removePropertyType = function() {
     ModelWriter.populatePropertyTypes();
 }
 
-ModelWriter.populatePropertyTypes = function() {
+ModelWriter.populatePropertyTypes = function()
+{
     var selects = $("select[name='types'], select[name='arg_type[]']");
     var mainOption1 = "<option value='' disabled selected>Property Types</option>";
     var otherOption1 = "<option value='' disabled selected>Property Type</option>";
@@ -139,7 +225,8 @@ ModelWriter.populatePropertyTypes = function() {
     $("select[name='arg_type[]']").append(removeProperty);
 }
 
-function modal_errors(html){
+function modal_errors(html)
+{
     var modal_width = 340;
     if($(window).width() > 650){
         modal_width = 600;
