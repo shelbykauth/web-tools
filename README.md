@@ -22,3 +22,12 @@ This project is being 'thrown' together quickly. The development version of
 it is being hosted live for the purpose of demonstrating how we work. Once 
 the first project (model-writer) is complete it is unlikely that the development
 version will remain live.
+
+##See the tool live
+http://marie.kauths.com/webtools
+
+##Other helpful links
+https://htmlpreview.github.io
+https://fiddles.io
+http://jsonlint.com
+https://github.com/circlecell/jsonlintdotcom
