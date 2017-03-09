@@ -24,10 +24,13 @@ the first project (model-writer) is complete it is unlikely that the development
 version will remain live.
 
 ##See the tool live
-http://marie.kauths.com/webtools
+http://marie.kauths.com/web-tools/model-writer.htm
 
 ##Other helpful links
 https://htmlpreview.github.io
+
 https://fiddles.io
+
 http://jsonlint.com
+
 https://github.com/circlecell/jsonlintdotcom
