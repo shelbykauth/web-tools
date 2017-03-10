@@ -17,6 +17,31 @@ $namespace = isset($_POST['namespace']) ? $_POST['namespace'] : null;
 $arg_name = isset($_POST['arg_name']) ? $_POST['arg_name'] : null;
 $arg_type = isset($_POST['arg_type']) ? $_POST['arg_type'] : null;
 
+/*
+ * Here only to work with sample from link
+ * This would not be in final
+ */
+
+ if (!$company && isset($_GET['company'])) {
+     $company = $_GET['company'];
+ }
+ 
+  if (!$model && isset($_GET['model'])) {
+     $model = $_GET['model'];
+ }
+ 
+  if (!$namespace && isset($_GET['namespace'])) {
+     $namespace = $_GET['namespace'];
+ }
+ 
+  if (!$arg_name && isset($_GET['arg_name'])) {
+     $arg_name = $_GET['arg_name'];
+ }
+ 
+  if (!$arg_type && isset($_GET['arg_type'])) {
+     $arg_type = $_GET['arg_type'];
+ }
+ 
 $args = [];
 
 if (count($arg_name) > 0 && count($arg_type) > 0) {

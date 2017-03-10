@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <title>Symfony Model Writer</title>
+    <title>Model Writer</title>
     <link rel="icon" href="http://marie.kauths.com/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,19 +10,24 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <meta charset="UTF-8">
-    <script src="../scripts/model-writer.js"></script>
+    <script src="scripts/model-writer.js"></script>
 </head>
 <body>
     <div class="container">
-        <h2>Symfony Model Writer</h2>
+        <h2>Model Writer</h2>
         <p>
-        	If you are using the 
-        	<a href="https://github.com/symfony/symfony-standard/">symfony framework</a>,
-	        you may find this tool useful.
+            This tool will write a model using the PSR standards with the 
+            proper spacing and comments to be picked up by more robust 
+            IDE (Intergrated Development Enviroment) software editors. Since
+            I am writing the code using a basic text editor, but want it to 
+            already be properly formatted and work when edited with an IDE I
+            thought this tool would be useful.
         </p>
         <p>
-	        Of course we have been using a symfony like framework, so hey, maybe symfony 
-	        does all the work for you including the spacing and this tool is not necessary.
+            Of course if you are using the 
+            <a href="https://github.com/symfony/symfony-standard/">symfony framework</a>, 
+            and have a database that is already properly written using Doctrine 
+            and ORM, then this tool is useless.
         </p>
         <form id="form-model-writer">
             <div class="form-group">
