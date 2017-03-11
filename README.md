@@ -34,3 +34,5 @@ https://fiddles.io
 http://jsonlint.com
 
 https://github.com/circlecell/jsonlintdotcom
+
+https://github.com/Microsoft/vscode
